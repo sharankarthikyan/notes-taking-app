@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+
+import fire from "../../fire";
 import "./LoginComponent.css";
 
 const LoginComponent = () => {
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [hasAccount, setHasAccount] = useState("");
+
+  const loginHandler = () => {
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPasswordError(err.message);
+            break;
+        }
+      });
+  };
+
   return (
     <div>
       <div className="title">
-        <h1 className="display-4" style={{ fontFamily: "Dancing Script" }}>
-          Double Star
+        <h1 className="display-4" style={{ fontFamily: "Satisfy" }}>
+          Welcome
         </h1>
-        <h4 style={{ fontFamily: "Satisfy" }}>Welcome</h4>
       </div>
       <div className="login-component">
         <div className="border">
@@ -32,25 +58,9 @@ const LoginComponent = () => {
               />
             </div>
 
-            <div className="form-group">
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="customCheck1"
-                />
-                <label className="custom-control-label" htmlFor="customCheck1">
-                  Remember me
-                </label>
-              </div>
-            </div>
-
             <button type="submit" className="btn btn-success btn-lg btn-block">
               Sign in
             </button>
-            <p className="forgot-password text-right">
-              Forgot <a href="#">password?</a>
-            </p>
           </form>
         </div>
       </div>

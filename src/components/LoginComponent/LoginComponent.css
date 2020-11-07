@@ -17,7 +17,7 @@
 }
 
 .border {
-    width: 50%;
+    width: 20%;
     border: 1px solid black;
     box-shadow: 1px 2px 1px 1px green;
     border-radius: 5px;
@@ -33,20 +33,32 @@
     justify-content: center;
 }
 
-@media (min-width: 718px) {
+@media screen and (max-width: 991px) {
     .border {
-        width: 30%;
+        width: 40%;
         border: 1px solid black;
         box-shadow: 1px 2px 1px 1px green;
         border-radius: 5px;
+        background-color: white;
     }
 }
 
-@media(min-width:1000px) {
+@media screen and (max-width: 767px) {
     .border {
-        width: 20%;
+        width: 50%;
         border: 1px solid black;
         box-shadow: 1px 2px 1px 1px green;
         border-radius: 5px;
+        background-color: white;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .border {
+        width: 80%;
+        border: 1px solid black;
+        box-shadow: 1px 2px 1px 1px green;
+        border-radius: 5px;
+        background-color: white;
     }
 }
