@@ -1,0 +1,52 @@
+.title h1{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.title h4{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.login-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:50vh;
+}
+
+.border {
+    width: 50%;
+    border: 1px solid black;
+    box-shadow: 1px 2px 1px 1px green;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.form {
+    padding:30px;
+}
+
+.form h3 {
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 718px) {
+    .border {
+        width: 30%;
+        border: 1px solid black;
+        box-shadow: 1px 2px 1px 1px green;
+        border-radius: 5px;
+    }
+}
+
+@media(min-width:1000px) {
+    .border {
+        width: 20%;
+        border: 1px solid black;
+        box-shadow: 1px 2px 1px 1px green;
+        border-radius: 5px;
+    }
+}
