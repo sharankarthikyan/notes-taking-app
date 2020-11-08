@@ -9,16 +9,16 @@
     padding: 10px;
 }
 
-.login-component {
+.signup-component {
     display: flex;
     align-items: center;
     justify-content: center;
     height:50vh;
 }
 
-.border {
+.border-signup {
     width: 20%;
-    box-shadow: 1px 2px 1px 1px green;
+    box-shadow: 1px 2px 1px 1px dodgerblue;
     border-radius: 5px;
     background-color: white;
 }
@@ -40,7 +40,7 @@
 @media screen and (max-width: 991px) {
     .border {
         width: 40%;
-        box-shadow: 1px 2px 1px 1px green;
+        box-shadow: 1px 2px 1px 1px dodgerblue;
         border-radius: 5px;
         background-color: white;
     }
@@ -49,7 +49,7 @@
 @media screen and (max-width: 767px) {
     .border {
         width: 50%;
-        box-shadow: 1px 2px 1px 1px green;
+        box-shadow: 1px 2px 1px 1px dodgerblue;
         border-radius: 5px;
         background-color: white;
     }
@@ -58,7 +58,7 @@
 @media screen and (max-width: 479px) {
     .border {
         width: 80%;
-        box-shadow: 1px 2px 1px 1px green;
+        box-shadow: 1px 2px 1px 1px dodgerblue;
         border-radius: 5px;
         background-color: white;
     }

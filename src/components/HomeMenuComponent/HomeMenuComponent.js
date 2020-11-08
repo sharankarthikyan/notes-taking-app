@@ -1,9 +1,14 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import fire from "../../fire";
 
-const MenuComponent = () => {
+const HomeMenuComponent = () => {
+  const handleLogout = () => {
+    fire.auth().signOut();
+  };
+
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -18,11 +23,10 @@ const MenuComponent = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <div className="ml-auto ">
-              <Link className="mr-2" to="/signup">
-                <Button variant="outline-primary">Signup</Button>
-              </Link>
               <Link to="/">
-                <Button variant="outline-success">Login</Button>
+                <Button onClick={handleLogout} variant="outline-danger">
+                  Logout
+                </Button>
               </Link>
             </div>
           </Navbar.Collapse>
@@ -32,4 +36,4 @@ const MenuComponent = () => {
   );
 };
 
-export default MenuComponent;
+export default HomeMenuComponent;

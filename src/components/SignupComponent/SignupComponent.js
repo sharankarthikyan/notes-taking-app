@@ -1,7 +1,103 @@
-import React from "react";
+import React, { Component } from "react";
+import "./SignupComponent.css";
+import fire from "../../fire";
+import LogMenuComponent from "../LogMenuComponent/LogMenuComponent";
 
-const SignupComponent = () => {
-  return <div>Signup</div>;
-};
+class SignupComponent extends Component {
+  state = {
+    user: "",
+    email: "",
+    password: "",
+    emailError: "",
+    passwordError: "",
+    hasAccount: false,
+  };
+
+  clearErrors = () => {
+    this.setState({ emailError: "" });
+    this.setState({ passwordError: "" });
+  };
+
+  signupHandler = (e) => {
+    e.preventDefault();
+    this.clearErrors();
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((response) => {
+        console.log("added");
+      })
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            this.setState({ emailError: err.message });
+            break;
+          case "auth/weak-password":
+            this.setState({ passwordError: err.message });
+            break;
+        }
+      });
+  };
+
+  render() {
+    return (
+      <div>
+        <LogMenuComponent />
+        <div className="title">
+          <h1 className="display-4" style={{ fontFamily: "Satisfy" }}>
+            Join one among us
+          </h1>
+        </div>
+        <div className="signup-component">
+          <div className="border-signup">
+            <form className="form">
+              <h3>Sign up</h3>
+              <div className="form-group">
+                <label>Name</label>
+                <input
+                  type="text"
+                  className="form-control col-sm-12"
+                  placeholder="Enter name"
+                  value={this.state.user}
+                  onChange={(e) => this.setState({ user: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control col-sm-12"
+                  placeholder="Enter email"
+                  value={this.state.email}
+                  onChange={(e) => this.setState({ email: e.target.value })}
+                />
+                <p className="errMsg">{this.state.emailError}</p>
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                />
+                <p className="errMsg">{this.state.passwordError}</p>
+              </div>
+              <button
+                type="submit"
+                onClick={this.signupHandler}
+                className="btn btn-primary btn-lg btn-block"
+              >
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default SignupComponent;

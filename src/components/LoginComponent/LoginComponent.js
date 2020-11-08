@@ -1,71 +1,101 @@
-import React, { useState } from "react";
-
+import React, { Component } from "react";
 import fire from "../../fire";
 import "./LoginComponent.css";
+import LogMenuComponent from "../LogMenuComponent/LogMenuComponent";
 
-const LoginComponent = () => {
-  const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [hasAccount, setHasAccount] = useState("");
+class LoginComponent extends Component {
+  state = {
+    user: "",
+    email: "",
+    password: "",
+    emailError: "",
+    passwordError: "",
+    hasAccount: false,
+  };
 
-  const loginHandler = () => {
+  clearInputs = () => {
+    this.setState({ email: "" });
+    this.setState({ password: "" });
+  };
+
+  clearErrors = () => {
+    this.setState({ emailError: "" });
+    this.setState({ passwordError: "" });
+  };
+
+  loginHandler = (e) => {
+    e.preventDefault();
+    this.clearErrors();
     fire
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((response) => {
+        this.setState({ hasAccount: true });
+        window.location.href = "/home";
+      })
       .catch((err) => {
         switch (err.code) {
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
-            setEmailError(err.message);
+            this.setState({ emailError: err.message });
             break;
           case "auth/wrong-password":
-            setPasswordError(err.message);
+            this.setState({ passwordError: err.message });
             break;
         }
       });
   };
 
-  return (
-    <div>
-      <div className="title">
-        <h1 className="display-4" style={{ fontFamily: "Satisfy" }}>
-          Welcome
-        </h1>
-      </div>
-      <div className="login-component">
-        <div className="border">
-          <form className="form">
-            <h3>Log in</h3>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                className="form-control col-sm-12"
-                placeholder="Enter email"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-              />
-            </div>
-
-            <button type="submit" className="btn btn-success btn-lg btn-block">
-              Sign in
-            </button>
-          </form>
+  render() {
+    return (
+      <div>
+        <LogMenuComponent />
+        <div className="title">
+          <h1 className="display-4" style={{ fontFamily: "Satisfy" }}>
+            Welcome
+          </h1>
+        </div>
+        <div className="login-component">
+          <div className="border">
+            <form className="form">
+              <h3>Log in</h3>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control col-sm-12"
+                  placeholder="Enter email"
+                  value={this.state.email}
+                  onChange={(e) => this.setState({ email: e.target.value })}
+                  required
+                />
+                <p className="errMsg">{this.state.emailError}</p>
+              </div>
+              {console.log(this.state.email)}
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                />
+                <p className="errMsg">{this.state.passwordError}</p>
+                <button
+                  onClick={this.loginHandler}
+                  className="btn btn-success btn-lg btn-block"
+                >
+                  Sign in
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default LoginComponent;
