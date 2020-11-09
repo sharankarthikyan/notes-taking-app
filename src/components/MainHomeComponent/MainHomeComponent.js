@@ -9,7 +9,9 @@ class MainHomeComponent extends Component {
   state = {
     pageTitle: "Type any name",
     columnData: [],
+    text: "",
     columnCount: 0,
+    showField: false,
     showPageTitleModal: false,
     showAddColumnModal: false,
   };
@@ -18,18 +20,29 @@ class MainHomeComponent extends Component {
     this.setState({ pageTitle: e.target.value });
   };
 
-  handleNewColumnTitle = (e) => {
-    const title = e.target.value;
-    this.setState({ columnData: [title] });
-  };
-
-  handleColumnNameEdit = (e) => {
-    const newData = [...this.state.columnData];
-    newData[0] = e.target.value;
-    this.setState({ columnData: [] });
+  addNewColumn = (e) => {
+    e.preventDefault();
+    let temp = [...this.state.columnData];
+    temp.push(this.state.text);
+    this.setState({ columnData: temp, text: "" });
   };
 
   render() {
+    let field = "";
+    if (this.state.showField) {
+      field = (
+        <form onSubmit={this.addNewColumn}>
+          <input
+            type="text"
+            value={this.state.text}
+            className="form-control mt-2"
+            onChange={(e) => this.setState({ text: e.target.value })}
+          />
+          <p>Press enter to create column</p>
+        </form>
+      );
+    }
+
     return (
       <div className="container mt-4">
         <Row>
@@ -55,19 +68,16 @@ class MainHomeComponent extends Component {
             <button
               onClick={() =>
                 this.setState({
-                  showAddColumnModal: true,
+                  showField: !this.state.showField,
                   columnCount: this.state.columnCount + 1,
                 })
               }
               className="btn bg-info text-white mt-2"
             >
-              <i className="plus circle icon"></i>Add New Column
+              <i className="plus circle icon" />
+              Add New Column
             </button>
-            <Modal
-              show={this.state.showAddColumnModal}
-              onHide={() => this.setState({ showAddColumnModal: false })}
-              change={(e) => this.handleNewColumnTitle(e)}
-            />
+            {field}
           </Col>
           <Col sm={2}>
             <button className="btn bg-secondary text-white mt-2">
@@ -76,10 +86,7 @@ class MainHomeComponent extends Component {
             </button>
           </Col>
         </Row>
-        <ToDoComponent
-          columnData={this.state.columnData}
-          columnNameEdit={(e) => this.handleColumnNameEdit(e)}
-        />
+        <ToDoComponent columnData={this.state.columnData} />
       </div>
     );
   }

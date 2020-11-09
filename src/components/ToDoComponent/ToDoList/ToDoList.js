@@ -9,6 +9,7 @@ class TodoList extends React.Component {
   render() {
     return (
       <ul>
+        {console.log(this.props.items)}
         {this.props.items.map((item, index) => (
           <li key={item.id} className="mt-2">
             <p style={{ display: "inline" }}>{item.text} </p>

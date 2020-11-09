@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import TodoList from "./ToDoList/ToDoList";
-import Modal from "../../UI/Modal/CenteredModal";
 
 class ToDoComponent extends Component {
   state = {
     items: [],
     text: "",
-    showColumnModal: false,
+    textRename: "",
+    showTextField: false,
   };
 
   handleChange = (e) => {
@@ -23,6 +23,7 @@ class ToDoComponent extends Component {
       id: Date.now(),
       likes: 0,
     };
+    console.log("new Text " + newItem.text);
     this.setState((state) => ({
       items: state.items.concat(newItem),
       text: "",
@@ -53,26 +54,12 @@ class ToDoComponent extends Component {
 
   render() {
     let data = "";
-    if (this.props.columnData) {
+    if (this.props.columnData.length) {
       data = this.props.columnData.map((column) => {
         return (
-          <div key={column}>
-            <h5>
-              {column}
-              <button
-                onClick={() => this.setState({ showColumnModal: true })}
-                className="btn btn-default"
-              >
-                <i className="icon edit outline" />
-              </button>
-              <Modal
-                show={this.state.showColumnModal}
-                onHide={() => {
-                  this.setState({ showColumnModal: false });
-                }}
-                change={(e) => this.props.columnNameEdit(e)}
-              />
-            </h5>
+          <div key={column.id}>
+            <h5>{column}</h5>
+            {console.log("In side TODO " + this.state.text)}
             <TodoList
               items={this.state.items}
               likesHandler={(id) => this.likeHandler(id)}
@@ -84,6 +71,7 @@ class ToDoComponent extends Component {
               <input
                 className="form-control col-sm-3"
                 id="new-todo"
+                key={column}
                 onChange={this.handleChange}
                 value={this.state.text}
               />
