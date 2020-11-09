@@ -36,6 +36,7 @@ class SignupComponent extends Component {
           case "auth/weak-password":
             this.setState({ passwordError: err.message });
             break;
+          default:
         }
       });
   };
@@ -44,11 +45,6 @@ class SignupComponent extends Component {
     return (
       <div>
         <LogMenuComponent />
-        <div className="title">
-          <h1 className="display-4" style={{ fontFamily: "Satisfy" }}>
-            Join one among us
-          </h1>
-        </div>
         <div className="signup-component">
           <div className="border-signup">
             <form className="form">

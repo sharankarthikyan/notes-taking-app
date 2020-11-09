@@ -43,6 +43,7 @@ class LoginComponent extends Component {
           case "auth/wrong-password":
             this.setState({ passwordError: err.message });
             break;
+          default:
         }
       });
   };
@@ -51,11 +52,6 @@ class LoginComponent extends Component {
     return (
       <div>
         <LogMenuComponent />
-        <div className="title">
-          <h1 className="display-4" style={{ fontFamily: "Satisfy" }}>
-            Welcome
-          </h1>
-        </div>
         <div className="login-component">
           <div className="border">
             <form className="form">
