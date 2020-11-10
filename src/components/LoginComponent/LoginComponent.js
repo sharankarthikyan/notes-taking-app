@@ -86,6 +86,9 @@ class LoginComponent extends Component {
                   Sign in
                 </button>
               </div>
+              <p>
+                New to Double Star! <a href="/signup">Create an account</a>
+              </p>
             </form>
           </div>
         </div>
