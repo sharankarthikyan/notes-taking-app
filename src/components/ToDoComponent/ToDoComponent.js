@@ -23,7 +23,6 @@ class ToDoComponent extends Component {
       id: Date.now(),
       likes: 0,
     };
-    console.log("new Text " + newItem.text);
     this.setState((state) => ({
       items: state.items.concat(newItem),
       text: "",
@@ -57,9 +56,8 @@ class ToDoComponent extends Component {
     if (this.props.columnData.length) {
       data = this.props.columnData.map((column) => {
         return (
-          <div key={column.id}>
+          <div key={column}>
             <h5>{column}</h5>
-            {console.log("In side TODO " + this.state.text)}
             <TodoList
               items={this.state.items}
               likesHandler={(id) => this.likeHandler(id)}

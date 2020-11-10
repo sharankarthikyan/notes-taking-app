@@ -4,12 +4,12 @@ import Modal from "../../../UI/Modal/CenteredModal";
 class TodoList extends React.Component {
   state = {
     showModal: false,
+    index: null,
   };
 
   render() {
     return (
       <ul>
-        {console.log(this.props.items)}
         {this.props.items.map((item, index) => (
           <li key={item.id} className="mt-2">
             <p style={{ display: "inline" }}>{item.text} </p>
@@ -26,7 +26,7 @@ class TodoList extends React.Component {
             <div
               className="ui vertical purple animated button"
               tabIndex="0"
-              onClick={() => this.setState({ showModal: true })}
+              onClick={() => this.setState({ showModal: true, index: index })}
             >
               <div className="hidden content">Edit</div>
               <div className="visible content">
@@ -38,7 +38,9 @@ class TodoList extends React.Component {
               onHide={() => {
                 this.setState({ showModal: false });
               }}
-              change={(e) => this.props.handleEdit(e, index)}
+              change={(e) => {
+                this.props.handleEdit(e, this.state.index);
+              }}
             />
             <div
               className="ui vertical red animated button"

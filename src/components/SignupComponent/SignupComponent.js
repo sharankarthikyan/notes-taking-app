@@ -10,12 +10,17 @@ class SignupComponent extends Component {
     password: "",
     emailError: "",
     passwordError: "",
+    successMsg: "",
     hasAccount: false,
   };
 
   clearErrors = () => {
     this.setState({ emailError: "" });
     this.setState({ passwordError: "" });
+  };
+
+  clearInputs = () => {
+    this.setState({ email: "", password: "", user: "" });
   };
 
   signupHandler = (e) => {
@@ -25,7 +30,9 @@ class SignupComponent extends Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((response) => {
-        console.log("added");
+        this.setState({ successMsg: "Account Created Successfully" });
+        this.clearInputs();
+        window.location.href = "/home";
       })
       .catch((err) => {
         switch (err.code) {
@@ -88,6 +95,7 @@ class SignupComponent extends Component {
               >
                 Sign up
               </button>
+              <p className="successMsg">{this.state.successMsg}</p>
             </form>
           </div>
         </div>

@@ -37,6 +37,11 @@
     color: red;
 }
 
+.successMsg {
+    padding: 5px;
+    color: green;
+}
+
 @media screen and (max-width: 991px) {
     .border-signup {
         width: 40%;
