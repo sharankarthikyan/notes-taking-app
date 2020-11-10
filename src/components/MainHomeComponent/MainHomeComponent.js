@@ -90,7 +90,7 @@ class MainHomeComponent extends Component {
             </button>
           </Col>
         </Row>
-        <ToDoComponent columnData={this.state.columnData} />
+        <ToDoComponent className="mt-5" columnData={this.state.columnData} />
       </div>
     );
   }

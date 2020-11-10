@@ -57,7 +57,7 @@ class ToDoComponent extends Component {
       data = this.props.columnData.map((column) => {
         return (
           <div key={column}>
-            <h5>{column}</h5>
+            <h4>{column}</h4>
             <TodoList
               items={this.state.items}
               likesHandler={(id) => this.likeHandler(id)}
@@ -81,7 +81,7 @@ class ToDoComponent extends Component {
         );
       });
     }
-    return <div>{data}</div>;
+    return <div className="mt-3">{data}</div>;
   }
 }
 
