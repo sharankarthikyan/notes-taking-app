@@ -38,7 +38,11 @@ class MainHomeComponent extends Component {
             className="form-control mt-2"
             onChange={(e) => this.setState({ text: e.target.value })}
           />
-          <p>Press enter to create column</p>
+          <p>Press enter to create Row</p>
+          <p style={{ color: "red" }}>
+            Kindly forgive me. You can able to create one row. If it exceeds it
+            will create a issues.
+          </p>
         </form>
       );
     }
