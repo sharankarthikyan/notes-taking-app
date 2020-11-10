@@ -96,6 +96,9 @@ class SignupComponent extends Component {
                 Sign up
               </button>
               <p className="successMsg">{this.state.successMsg}</p>
+              <p>
+                Already have an account! <a href="/">Log in</a>
+              </p>
             </form>
           </div>
         </div>
