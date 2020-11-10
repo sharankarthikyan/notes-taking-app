@@ -79,7 +79,7 @@ class MainHomeComponent extends Component {
               className="btn bg-info text-white mt-2"
             >
               <i className="plus circle icon" />
-              Add New Column
+              Add New Row
             </button>
             {field}
           </Col>
