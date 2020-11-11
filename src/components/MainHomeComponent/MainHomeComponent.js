@@ -30,7 +30,6 @@ class MainHomeComponent extends Component {
     };
     temp.push(newColumn);
     this.setState({ columnData: temp, text: "" });
-    console.log(this.state.columnData);
   };
 
   handleItemsSubmit = (e, item, index) => {
@@ -51,7 +50,6 @@ class MainHomeComponent extends Component {
   };
 
   likesHandler = (index, columnIndex) => {
-    console.log("Like first " + index + " " + columnIndex);
     let columnData = [...this.state.columnData];
     let column = columnData[columnIndex];
     column.columnItemsArray[index].likes++;
@@ -64,7 +62,6 @@ class MainHomeComponent extends Component {
     let column = columnData[columnIndex];
     column.itemText = e.target.value;
     columnData[columnIndex] = column;
-    console.log("handle changed " + column);
     this.setState({ columnData: columnData });
   };
 
@@ -78,12 +75,9 @@ class MainHomeComponent extends Component {
             value={this.state.text}
             className="form-control mt-2"
             onChange={(e) => this.setState({ text: e.target.value })}
+            required
           />
-          <p>Press enter to create Row</p>
-          <p style={{ color: "red" }}>
-            Kindly forgive me. You can able to create one row. If it exceeds it
-            will create a issues.
-          </p>
+          <button className="btn btn-outline-info mt-2">Add row</button>
         </form>
       );
     }
@@ -127,7 +121,7 @@ class MainHomeComponent extends Component {
           <Col sm={2}>
             <div
               data-tooltip="It is just a dummy button"
-              data-position="top left"
+              data-position="top center"
             >
               <button className="btn bg-secondary text-white mt-2">
                 <i className="file pdf outline icon" />

@@ -22,17 +22,17 @@ class ToDoComponent extends Component {
     column.columnItemsArray.splice(itemIndex, 1);
     columnData[columnIndex] = column;
     this.props.handleDelete(columnData);
-    console.log("splice " + columnData);
   };
 
   render() {
     let data = "";
     if (this.props.columnData.length) {
-      let local = Object.values(this.props.columnData[0].columnTitle);
-      console.log("Local " + local);
       data = Object.keys(this.props.columnData).map((column) => {
         return (
-          <div key={Object.values(this.props.columnData[column].columnTitle)}>
+          <div
+            className="mt-2"
+            key={Object.values(this.props.columnData[column].columnTitle)}
+          >
             <h4>{Object.values(this.props.columnData[column].columnTitle)}</h4>
             <TodoList
               items={this.props.columnData[column].columnItemsArray}
