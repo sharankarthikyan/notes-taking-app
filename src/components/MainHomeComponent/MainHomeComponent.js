@@ -23,8 +23,49 @@ class MainHomeComponent extends Component {
   addNewColumn = (e) => {
     e.preventDefault();
     let temp = [...this.state.columnData];
-    temp.push(this.state.text);
+    let newColumn = {
+      columnTitle: this.state.text,
+      columnItemsArray: [],
+      itemText: "",
+    };
+    temp.push(newColumn);
     this.setState({ columnData: temp, text: "" });
+    console.log(this.state.columnData);
+  };
+
+  handleItemsSubmit = (e, item, index) => {
+    e.preventDefault();
+    let columnData = [...this.state.columnData];
+    let column = columnData[index];
+    let items = [...column.columnItemsArray];
+    const newItem = {
+      text: item,
+      id: Date.now(),
+      likes: 0,
+    };
+    items.push(newItem);
+    column.columnItemsArray = items;
+    column.itemText = "";
+    columnData[index] = column;
+    this.setState({ columnData: columnData });
+  };
+
+  likesHandler = (index, columnIndex) => {
+    console.log("Like first " + index + " " + columnIndex);
+    let columnData = [...this.state.columnData];
+    let column = columnData[columnIndex];
+    column.columnItemsArray[index].likes++;
+    columnData[columnIndex] = column;
+    this.setState({ columnData: columnData });
+  };
+
+  handleChange = (e, columnIndex) => {
+    let columnData = [...this.state.columnData];
+    let column = columnData[columnIndex];
+    column.itemText = e.target.value;
+    columnData[columnIndex] = column;
+    console.log("handle changed " + column);
+    this.setState({ columnData: columnData });
   };
 
   render() {
@@ -84,13 +125,31 @@ class MainHomeComponent extends Component {
             {field}
           </Col>
           <Col sm={2}>
-            <button className="btn bg-secondary text-white mt-2">
-              <i className="file pdf outline icon" />
-              Export as PDF
-            </button>
+            <div
+              data-tooltip="It is just a dummy button"
+              data-position="top left"
+            >
+              <button className="btn bg-secondary text-white mt-2">
+                <i className="file pdf outline icon" />
+                Export as PDF
+              </button>
+            </div>
           </Col>
         </Row>
-        <ToDoComponent columnData={this.state.columnData} />
+        <ToDoComponent
+          columnData={this.state.columnData}
+          handleItemsSubmit={(e, item, index) =>
+            this.handleItemsSubmit(e, item, index)
+          }
+          likesHandler={(index, columnIndex) =>
+            this.likesHandler(index, columnIndex)
+          }
+          handleChange={(e, columnIndex) => this.handleChange(e, columnIndex)}
+          handleEdit={(columnData) => this.setState({ columnData: columnData })}
+          handleDelete={(columnData) =>
+            this.setState({ columnData: columnData })
+          }
+        />
       </div>
     );
   }

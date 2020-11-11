@@ -5,6 +5,7 @@ class TodoList extends React.Component {
   state = {
     showModal: false,
     index: null,
+    columnIndex: this.props.columnIndex,
   };
 
   render() {
@@ -16,7 +17,9 @@ class TodoList extends React.Component {
             <div
               className="ui vertical pink animated button"
               tabIndex="0"
-              onClick={() => this.props.likesHandler(index)}
+              onClick={() =>
+                this.props.likesHandler(index, this.state.columnIndex)
+              }
             >
               <div className="hidden content">{item.likes} Likes</div>
               <div className="visible content">
