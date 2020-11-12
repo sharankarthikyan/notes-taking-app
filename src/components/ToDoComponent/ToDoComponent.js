@@ -26,7 +26,7 @@ class ToDoComponent extends Component {
 
   render() {
     let data = "";
-    if (this.props.columnData.length) {
+    if (this.props.columnData !== null) {
       data = Object.keys(this.props.columnData).map((column) => {
         return (
           <div
@@ -63,7 +63,10 @@ class ToDoComponent extends Component {
               />
               <button className="btn btn-success mt-2">
                 Add Note #
-                {this.props.columnData[column].columnItemsArray.length + 1}
+                {this.props.columnData[column].columnItemsArray === undefined
+                  ? 1
+                  : Object.keys(this.props.columnData[column].columnItemsArray)
+                      .length + 1}
               </button>
             </form>
           </div>

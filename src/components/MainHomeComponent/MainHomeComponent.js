@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./MainHomeComponent.css";
 import ToDoComponent from "../ToDoComponent/ToDoComponent";
+import firebase from "firebase";
 
 class MainHomeComponent extends Component {
   state = {
@@ -16,26 +17,67 @@ class MainHomeComponent extends Component {
     showAddColumnModal: false,
   };
 
+  updateColumnData = (columnData) => {
+    return firebase
+      .database()
+      .ref("/users/" + this.props.userId + "/columnData")
+      .set(columnData);
+  };
+
+  updatePageTitle = (pageTitle) => {
+    return firebase
+      .database()
+      .ref("/users/" + this.props.userId + "/pageTitle")
+      .set(pageTitle);
+  };
+
   handlePageTitle = (e) => {
     this.setState({ pageTitle: e.target.value });
+    this.updatePageTitle(this.state.pageTitle);
   };
+
+  componentDidMount() {
+    let ref = firebase
+      .database()
+      .ref("/users/" + this.props.userId + "/columnData");
+    ref.on("value", (snapshot) => {
+      const state = snapshot.val();
+      if (state !== null) {
+        this.setState({ columnData: state });
+      }
+    });
+
+    let ref2 = firebase
+      .database()
+      .ref("/users/" + this.props.userId + "/pageTitle");
+    ref2.on("value", (snapshot) => {
+      const state = snapshot.val();
+      if (state !== null) {
+        this.setState({ pageTitle: state });
+      }
+    });
+  }
 
   addNewColumn = (e) => {
     e.preventDefault();
-    let temp = [...this.state.columnData];
+    let columnData = [...this.state.columnData];
     let newColumn = {
       columnTitle: this.state.text,
       columnItemsArray: [],
       itemText: "",
     };
-    temp.push(newColumn);
-    this.setState({ columnData: temp, text: "" });
+    columnData.push(newColumn);
+    this.setState({ columnData: columnData, text: "" });
+    this.updateColumnData(columnData);
   };
 
   handleItemsSubmit = (e, item, index) => {
     e.preventDefault();
     let columnData = [...this.state.columnData];
     let column = columnData[index];
+    if (column.columnItemsArray === undefined) {
+      column.columnItemsArray = [];
+    }
     let items = [...column.columnItemsArray];
     const newItem = {
       text: item,
@@ -47,6 +89,7 @@ class MainHomeComponent extends Component {
     column.itemText = "";
     columnData[index] = column;
     this.setState({ columnData: columnData });
+    this.updateColumnData(columnData);
   };
 
   likesHandler = (index, columnIndex) => {
@@ -55,6 +98,7 @@ class MainHomeComponent extends Component {
     column.columnItemsArray[index].likes++;
     columnData[columnIndex] = column;
     this.setState({ columnData: columnData });
+    this.updateColumnData(columnData);
   };
 
   handleChange = (e, columnIndex) => {
@@ -63,6 +107,7 @@ class MainHomeComponent extends Component {
     column.itemText = e.target.value;
     columnData[columnIndex] = column;
     this.setState({ columnData: columnData });
+    this.updateColumnData(columnData);
   };
 
   render() {
@@ -138,10 +183,14 @@ class MainHomeComponent extends Component {
             this.likesHandler(index, columnIndex)
           }
           handleChange={(e, columnIndex) => this.handleChange(e, columnIndex)}
-          handleEdit={(columnData) => this.setState({ columnData: columnData })}
-          handleDelete={(columnData) =>
-            this.setState({ columnData: columnData })
-          }
+          handleEdit={(columnData) => {
+            this.setState({ columnData: columnData });
+            this.updateColumnData(columnData);
+          }}
+          handleDelete={(columnData) => {
+            this.setState({ columnData: columnData });
+            this.updateColumnData(columnData);
+          }}
         />
         {this.state.userinfo}
       </div>

@@ -6,26 +6,25 @@ import Spinner from "../../UI/Spinner/Spinner";
 
 class HomeComponent extends Component {
   state = {
-    userinfo: "",
+    userId: "",
     userError: false,
   };
 
   componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ userinfo: user.uid });
+        this.setState({ userId: user.uid });
       } else {
         this.setState({ userError: true });
-        console.log("There is no logged in user");
       }
     });
   }
   render() {
-    if (!this.state.userError && this.state.userinfo) {
+    if (!this.state.userError && this.state.userId) {
       return (
         <div>
           <HomeMenuComponent />
-          <MainHomeComponent />
+          <MainHomeComponent userId={this.state.userId} />
         </div>
       );
     } else if (this.state.userError) {

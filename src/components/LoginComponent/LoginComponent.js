@@ -68,7 +68,6 @@ class LoginComponent extends Component {
                 />
                 <p className="errMsg">{this.state.emailError}</p>
               </div>
-              {console.log(this.state.email)}
               <div className="form-group">
                 <label>Password</label>
                 <input
