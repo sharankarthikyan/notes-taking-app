@@ -59,6 +59,7 @@ class ToDoComponent extends Component {
                 key={column}
                 onChange={(e) => this.props.handleChange(e, column)}
                 value={this.props.columnData[column].itemText}
+                required
               />
               <button className="btn btn-success mt-2">
                 Add Note #

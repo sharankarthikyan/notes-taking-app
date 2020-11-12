@@ -81,7 +81,6 @@ class MainHomeComponent extends Component {
         </form>
       );
     }
-
     return (
       <div className="container mt-4">
         <Row>
@@ -144,6 +143,7 @@ class MainHomeComponent extends Component {
             this.setState({ columnData: columnData })
           }
         />
+        {this.state.userinfo}
       </div>
     );
   }
