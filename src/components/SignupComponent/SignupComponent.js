@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SignupComponent.css";
 import fire from "../../fire";
 import LogMenuComponent from "../LogMenuComponent/LogMenuComponent";
+import { Link } from "react-router-dom";
 
 class SignupComponent extends Component {
   state = {
@@ -97,7 +98,7 @@ class SignupComponent extends Component {
               </button>
               <p className="successMsg">{this.state.successMsg}</p>
               <p>
-                Already have an account! <a href="/">Log in</a>
+                Already have an account! <Link to="/">Log in</Link>
               </p>
             </form>
           </div>
