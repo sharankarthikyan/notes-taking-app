@@ -30,7 +30,7 @@ class HomeComponent extends Component {
       );
     } else if (this.state.userError) {
       return (
-        <Spinner message="Something went Wrong, Maybe your login session is expired :(" />
+        <Spinner message="Something went Wrong, Maybe your login session expired :(" />
       );
     } else {
       return <Spinner />;
