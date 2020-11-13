@@ -70,7 +70,7 @@ class ToDoComponent extends Component {
                 value={this.props.columnData[column].itemText}
                 required
               />
-              <button className="btn btn-success mt-2">
+              <button className="btn btn-success mt-2 agl">
                 Add Note #
                 {this.props.columnData[column].columnItemsArray === undefined
                   ? 1
