@@ -59,6 +59,7 @@ class TodoList extends React.Component {
                     <i className="trash icon" />
                   </div>
                 </div>
+                <div className="float-sm-right">{item.id}</div>
               </li>
             ))}
       </ul>

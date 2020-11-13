@@ -15,6 +15,21 @@ class MainHomeComponent extends Component {
     showField: false,
     showPageTitleModal: false,
     showAddColumnModal: false,
+    date: new Date(),
+    months: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
   };
 
   updateColumnData = (columnData) => {
@@ -65,6 +80,14 @@ class MainHomeComponent extends Component {
       columnTitle: this.state.text,
       columnItemsArray: [],
       itemText: "",
+      columnDate:
+        this.state.date.getDate() +
+        " " +
+        this.state.months[this.state.date.getMonth()] +
+        " " +
+        this.state.date.getFullYear() +
+        " at " +
+        this.state.date.toLocaleTimeString(),
     };
     columnData.push(newColumn);
     this.setState({ columnData: columnData, text: "" });
@@ -81,7 +104,14 @@ class MainHomeComponent extends Component {
     let items = [...column.columnItemsArray];
     const newItem = {
       text: item,
-      id: Date.now(),
+      id:
+        this.state.date.getDate() +
+        " " +
+        this.state.months[this.state.date.getMonth()] +
+        " " +
+        this.state.date.getFullYear() +
+        " at " +
+        this.state.date.toLocaleTimeString(),
       likes: 0,
     };
     items.push(newItem);
@@ -191,6 +221,7 @@ class MainHomeComponent extends Component {
             this.setState({ columnData: columnData });
             this.updateColumnData(columnData);
           }}
+          date={this.state.columnData.columnDate}
         />
         {this.state.userinfo}
       </div>

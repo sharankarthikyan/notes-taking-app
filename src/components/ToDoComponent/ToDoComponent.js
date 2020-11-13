@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodoList from "./ToDoList/ToDoList";
+import "./ToDoComponent.css";
 
 class ToDoComponent extends Component {
   state = {
@@ -30,10 +31,13 @@ class ToDoComponent extends Component {
       data = Object.keys(this.props.columnData).map((column) => {
         return (
           <div
-            className="mt-2"
+            className="mt-2 card p-3 column"
             key={Object.values(this.props.columnData[column].columnTitle)}
           >
             <h4>{Object.values(this.props.columnData[column].columnTitle)}</h4>
+            <p className="float-right">
+              Created on {this.props.columnData[column].columnDate}
+            </p>
             <TodoList
               items={this.props.columnData[column].columnItemsArray}
               columnIndex={column}
@@ -73,7 +77,7 @@ class ToDoComponent extends Component {
         );
       });
     }
-    return <div className="mt-3">{data}</div>;
+    return <div className="mt-3 mb-3">{data}</div>;
   }
 }
 
