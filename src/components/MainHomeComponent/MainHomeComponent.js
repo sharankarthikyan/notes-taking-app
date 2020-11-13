@@ -3,13 +3,12 @@ import Modal from "../../UI/Modal/CenteredModal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./MainHomeComponent.css";
-import "../../UI/Fonts/Fonts.css";
 import ToDoComponent from "../ToDoComponent/ToDoComponent";
 import firebase from "firebase";
 
 class MainHomeComponent extends Component {
   state = {
-    pageTitle: "Just give a title for this page",
+    pageTitle: "Type any name",
     columnData: [],
     text: "",
     columnCount: 0,

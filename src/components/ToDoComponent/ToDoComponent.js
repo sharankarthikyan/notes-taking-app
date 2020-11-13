@@ -38,7 +38,10 @@ class ToDoComponent extends Component {
             <h4 className="agl">
               {Object.values(this.props.columnData[column].columnTitle)}
             </h4>
-            <p className="float-right text-muted asl">
+            <p
+              className="float-right text-muted asl"
+              style={{ fontFamily: "Averia Sans Libre" }}
+            >
               Created on {this.props.columnData[column].columnDate}
             </p>
             <TodoList

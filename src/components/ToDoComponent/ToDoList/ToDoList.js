@@ -24,19 +24,19 @@ class TodoList extends React.Component {
                     this.props.likesHandler(index, this.state.columnIndex)
                   }
                 >
-                  <div className="hidden content asl">{item.likes} Impt.</div>
+                  <div className="hidden content agl">{item.likes} Impt.</div>
                   <div className="visible content">
                     <i className="exclamation icon" />
                   </div>
                 </div>
                 <div
-                  className="ui vertical violet animated button"
+                  className="ui vertical violet animated button "
                   tabIndex="0"
                   onClick={() =>
                     this.setState({ showModal: true, index: index })
                   }
                 >
-                  <div className="hidden content asl">Edit</div>
+                  <div className="hidden content agl">Edit</div>
                   <div className="visible content">
                     <i className="edit icon" />
                   </div>
@@ -55,15 +55,12 @@ class TodoList extends React.Component {
                   onClick={() => this.props.handleDelete(index)}
                   tabIndex="0"
                 >
-                  <div className="hidden content asl">Delete</div>
+                  <div className="hidden content agl">Delete</div>
                   <div className="visible content">
                     <i className="trash icon" />
                   </div>
                 </div>
-                <div
-                  style={{ fontFamily: "Averia Sans Libre" }}
-                  className="float-sm-right text-secondary"
-                >
+                <div className="float-sm-right text-secondary asl">
                   {item.id}
                 </div>
               </li>
