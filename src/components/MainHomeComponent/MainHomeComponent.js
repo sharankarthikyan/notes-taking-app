@@ -3,12 +3,13 @@ import Modal from "../../UI/Modal/CenteredModal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./MainHomeComponent.css";
+import "../../UI/Fonts/Fonts.css";
 import ToDoComponent from "../ToDoComponent/ToDoComponent";
 import firebase from "firebase";
 
 class MainHomeComponent extends Component {
   state = {
-    pageTitle: "Type any name",
+    pageTitle: "Just give a title for this page",
     columnData: [],
     text: "",
     columnCount: 0,
@@ -161,7 +162,7 @@ class MainHomeComponent extends Component {
         <Row>
           <Col sm={8}>
             <div>
-              <h4>
+              <h3 className="it">
                 {this.state.pageTitle}{" "}
                 <button
                   onClick={() => this.setState({ showPageTitleModal: true })}
@@ -174,7 +175,7 @@ class MainHomeComponent extends Component {
                   onHide={() => this.setState({ showPageTitleModal: false })}
                   change={(e) => this.handlePageTitle(e)}
                 />
-              </h4>
+              </h3>
             </div>
           </Col>
           <Col sm={2}>
@@ -185,7 +186,7 @@ class MainHomeComponent extends Component {
                   columnCount: this.state.columnCount + 1,
                 })
               }
-              className="btn bg-info text-white mt-2"
+              className="btn bg-info text-white mt-2 agl"
             >
               <i className="plus circle icon" />
               Add New Row
@@ -197,7 +198,7 @@ class MainHomeComponent extends Component {
               data-tooltip="It is just a dummy button"
               data-position="top center"
             >
-              <button className="btn bg-secondary text-white mt-2">
+              <button className="btn bg-secondary text-white mt-2 agl">
                 <i className="file pdf outline icon" />
                 Export as PDF
               </button>

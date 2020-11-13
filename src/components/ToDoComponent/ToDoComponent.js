@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TodoList from "./ToDoList/ToDoList";
 import "./ToDoComponent.css";
+import "../../UI/Fonts/Fonts.css";
 
 class ToDoComponent extends Component {
   state = {
@@ -34,8 +35,10 @@ class ToDoComponent extends Component {
             className="mt-2 card p-3 column"
             key={Object.values(this.props.columnData[column].columnTitle)}
           >
-            <h4>{Object.values(this.props.columnData[column].columnTitle)}</h4>
-            <p className="float-right">
+            <h4 className="agl">
+              {Object.values(this.props.columnData[column].columnTitle)}
+            </h4>
+            <p className="float-right text-muted asl">
               Created on {this.props.columnData[column].columnDate}
             </p>
             <TodoList
@@ -56,7 +59,9 @@ class ToDoComponent extends Component {
                 )
               }
             >
-              <label htmlFor="new-todo">What needs to be done?</label>
+              <label htmlFor="new-todo" className="asl">
+                What needs to be done?
+              </label>
               <input
                 className="form-control col-sm-3"
                 id="new-todo"

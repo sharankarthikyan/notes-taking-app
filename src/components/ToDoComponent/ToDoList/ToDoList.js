@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "../../../UI/Modal/CenteredModal";
+import "../../../UI/Fonts/Fonts.css";
 
 class TodoList extends React.Component {
   state = {
@@ -10,32 +11,32 @@ class TodoList extends React.Component {
 
   render() {
     return (
-      <ul>
+      <ul className="me">
         {this.props.items === undefined
           ? ""
           : this.props.items.map((item, index) => (
-              <li key={item.id} className="mt-2">
+              <li key={index} className="mt-2">
                 <p style={{ display: "inline" }}>{item.text} </p>
                 <div
-                  className="ui vertical pink animated button"
+                  className="ui vertical yellow animated button"
                   tabIndex="0"
                   onClick={() =>
                     this.props.likesHandler(index, this.state.columnIndex)
                   }
                 >
-                  <div className="hidden content">{item.likes} Likes</div>
+                  <div className="hidden content asl">{item.likes} Impt.</div>
                   <div className="visible content">
-                    <i className="heart icon" />
+                    <i className="exclamation icon" />
                   </div>
                 </div>
                 <div
-                  className="ui vertical purple animated button"
+                  className="ui vertical violet animated button"
                   tabIndex="0"
                   onClick={() =>
                     this.setState({ showModal: true, index: index })
                   }
                 >
-                  <div className="hidden content">Edit</div>
+                  <div className="hidden content asl">Edit</div>
                   <div className="visible content">
                     <i className="edit icon" />
                   </div>
@@ -54,12 +55,17 @@ class TodoList extends React.Component {
                   onClick={() => this.props.handleDelete(index)}
                   tabIndex="0"
                 >
-                  <div className="hidden content">Delete</div>
+                  <div className="hidden content asl">Delete</div>
                   <div className="visible content">
                     <i className="trash icon" />
                   </div>
                 </div>
-                <div className="float-sm-right">{item.id}</div>
+                <div
+                  style={{ fontFamily: "Averia Sans Libre" }}
+                  className="float-sm-right text-secondary"
+                >
+                  {item.id}
+                </div>
               </li>
             ))}
       </ul>
