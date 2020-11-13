@@ -29,19 +29,23 @@ class ToDoComponent extends Component {
   render() {
     let data = "";
     if (this.props.columnData !== null) {
-      data = Object.keys(this.props.columnData).map((column) => {
+      data = Object.keys(this.props.columnData).map((column, index) => {
         return (
-          <div
-            className="mt-2 card p-3 column"
-            key={Object.values(this.props.columnData[column].columnTitle)}
-          >
+          <div className="mt-2 card p-3 column" key={index}>
             <h4 className="agl">
               {Object.values(this.props.columnData[column].columnTitle)}
+              <div
+                className="ui vertical tiny red animated button ml-3"
+                tabIndex="0"
+                onClick={() => this.props.deleteColumn(column)}
+              >
+                <div className="hidden content agl">Delete</div>
+                <div className="visible content">
+                  <i className="trash icon" />
+                </div>
+              </div>
             </h4>
-            <p
-              className="float-right text-muted asl"
-              style={{ fontFamily: "Averia Sans Libre" }}
-            >
+            <p className="float-right text-muted asl">
               Created on {this.props.columnData[column].columnDate}
             </p>
             <TodoList

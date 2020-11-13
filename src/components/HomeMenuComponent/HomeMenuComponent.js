@@ -28,7 +28,6 @@ const HomeMenuComponent = () => {
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                   <i className="icon user circle"></i>
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
                   <Dropdown.Item href="#/action-1">
                     <Link to="/">

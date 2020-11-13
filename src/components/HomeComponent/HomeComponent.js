@@ -7,13 +7,14 @@ import Spinner from "../../UI/Spinner/Spinner";
 class HomeComponent extends Component {
   state = {
     userId: "",
+    userEmailId: "",
     userError: false,
   };
 
   componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ userId: user.uid });
+        this.setState({ userId: user.uid, userEmailId: user.email });
       } else {
         this.setState({ userError: true });
       }
@@ -24,7 +25,10 @@ class HomeComponent extends Component {
       return (
         <div>
           <HomeMenuComponent />
-          <MainHomeComponent userId={this.state.userId} />
+          <MainHomeComponent
+            userId={this.state.userId}
+            userEmailId={this.state.userEmailId}
+          />
         </div>
       );
     } else if (this.state.userError) {

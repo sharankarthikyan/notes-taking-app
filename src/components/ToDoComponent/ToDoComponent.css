@@ -1,3 +1,4 @@
 .column {
     box-shadow: 1px 1px 1px 1px violet;
+    border-radius: 6px;
 }

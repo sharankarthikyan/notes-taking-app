@@ -61,7 +61,7 @@ class TodoList extends React.Component {
                   </div>
                 </div>
                 <div className="float-sm-right text-secondary asl">
-                  {item.id}
+                  Created on {item.id}
                 </div>
               </li>
             ))}

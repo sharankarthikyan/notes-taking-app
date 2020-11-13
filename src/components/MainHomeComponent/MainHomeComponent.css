@@ -1,0 +1,28 @@
+
+body{
+    height: 10px;
+    color: black;
+    font-family: 'Anonymous Pro', monospace;
+    background-color: white;
+}
+.line-1{
+    width: 2em;
+    border-right: 1px solid black;
+    font-size: 125%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Animation */
+.anim-typewriter{
+    animation: typewriter 4s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms steps(10) ;
+}
+@keyframes typewriter{
+    from{width: 0;}
+    to{width: 12.1em;}
+}
+@keyframes blinkTextCursor{
+    from{border-right-color: black;}
+    to{border-right-color: transparent;}
+}

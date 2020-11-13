@@ -140,6 +140,13 @@ class MainHomeComponent extends Component {
     this.updateColumnData(columnData);
   };
 
+  deleteColumn = (index) => {
+    let columnData = [...this.state.columnData];
+    console.log(columnData);
+    columnData.splice(index, 1);
+    this.updateColumnData(columnData);
+  };
+
   render() {
     let field = "";
     if (this.state.showField) {
@@ -158,6 +165,11 @@ class MainHomeComponent extends Component {
     }
     return (
       <div className="container mt-4">
+        <div className="mb-4">
+          <p className="line-1 anim-typewriter me text-info">
+            Welcome to Double star
+          </p>
+        </div>
         <Row>
           <Col sm={8}>
             <div>
@@ -222,6 +234,7 @@ class MainHomeComponent extends Component {
             this.updateColumnData(columnData);
           }}
           date={this.state.columnData.columnDate}
+          deleteColumn={(index) => this.deleteColumn(index)}
         />
         {this.state.userinfo}
       </div>
