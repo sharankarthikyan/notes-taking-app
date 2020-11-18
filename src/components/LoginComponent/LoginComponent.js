@@ -3,6 +3,7 @@ import fire from "../../fire";
 import "./LoginComponent.css";
 import LogMenuComponent from "../LogMenuComponent/LogMenuComponent";
 import { Link } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
 
 class LoginComponent extends Component {
   state = {
@@ -87,7 +88,8 @@ class LoginComponent extends Component {
                 </button>
               </div>
               <p>
-                New to Double Star! <Link to="/signup">Create an account</Link>
+                New to Twinkle ToDos!{" "}
+                <Link to="/signup">Create an account</Link>
               </p>
             </form>
           </div>

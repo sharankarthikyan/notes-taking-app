@@ -5,10 +5,11 @@ import Col from "react-bootstrap/Col";
 import "./MainHomeComponent.css";
 import ToDoComponent from "../ToDoComponent/ToDoComponent";
 import firebase from "firebase";
+import Navbar from "react-bootstrap/Navbar";
 
 class MainHomeComponent extends Component {
   state = {
-    pageTitle: "Retrospective",
+    pageTitle: "Give a Title to the page",
     columnData: [
       {
         columnTitle: "What went well?",
@@ -178,19 +179,20 @@ class MainHomeComponent extends Component {
             value={this.state.text}
             className="form-control mt-2"
             onChange={(e) => this.setState({ text: e.target.value })}
+            placeholder="Enter task title"
             required
           />
-          <button className="btn btn-outline-info mt-2">Add column</button>
+          <button className="btn btn-outline-info mt-2">Add Task</button>
         </form>
       );
     }
     return (
       <div className="container mt-4">
-        {/*<div className="mb-4">*/}
-        {/*  <p className="line-1 anim-typewriter me text-info">*/}
-        {/*    Welcome to Double star*/}
-        {/*  </p>*/}
-        {/*</div>*/}
+        <div className="mb-4">
+          <p className="line-1 anim-typewriter me text-info">
+            Welcome to Twinkle ToDos
+          </p>
+        </div>
         <Row>
           <Col sm={8}>
             <div>
@@ -221,7 +223,7 @@ class MainHomeComponent extends Component {
               className="btn bg-info text-white mt-2 agl"
             >
               <i className="plus circle icon" />
-              Add New Column
+              Add New Task Title
             </button>
             {field}
           </Col>
