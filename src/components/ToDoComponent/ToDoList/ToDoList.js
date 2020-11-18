@@ -18,7 +18,7 @@ class TodoList extends React.Component {
               <li key={index} className="mt-2">
                 <p style={{ display: "inline" }}>{item.text} </p>
                 <div
-                  className="ui vertical pink animated button"
+                  className="ui vertical pink mini animated button"
                   tabIndex="0"
                   onClick={() =>
                     this.props.likesHandler(index, this.state.columnIndex)
@@ -32,7 +32,7 @@ class TodoList extends React.Component {
                   </div>
                 </div>
                 <div
-                  className="ui vertical violet animated button "
+                  className="ui vertical violet mini animated button "
                   tabIndex="0"
                   onClick={() =>
                     this.setState({ showModal: true, index: index })
@@ -53,7 +53,7 @@ class TodoList extends React.Component {
                   }}
                 />
                 <div
-                  className="ui vertical red animated button"
+                  className="ui vertical red mini animated button"
                   onClick={() => this.props.handleDelete(index)}
                   tabIndex="0"
                 >

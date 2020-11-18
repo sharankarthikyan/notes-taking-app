@@ -31,7 +31,7 @@ class ToDoComponent extends Component {
     if (this.props.columnData !== null) {
       data = Object.keys(this.props.columnData).map((column, index) => {
         return (
-          <div id="item" className="mt-2 card p-3 column" key={index}>
+          <div id="item" className="mt-2 card p-3 column mb-4" key={index}>
             <h4 className="agl">
               {Object.values(this.props.columnData[column].columnTitle)}
               <div

@@ -12,7 +12,9 @@ class MainHomeComponent extends Component {
     columnData: [
       {
         columnTitle: "What went well?",
-        columnItemsArray: [],
+        columnItemsArray: [
+          { text: "This is an item", id: "by Default", likes: 0 },
+        ],
         itemText: "",
         columnDate: "by Default",
       },
