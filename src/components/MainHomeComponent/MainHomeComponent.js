@@ -9,7 +9,26 @@ import firebase from "firebase";
 class MainHomeComponent extends Component {
   state = {
     pageTitle: "Type any name",
-    columnData: [],
+    columnData: [
+      {
+        columnTitle: "What went well?",
+        columnItemsArray: [],
+        itemText: "",
+        columnDate: "by Default",
+      },
+      {
+        columnTitle: "What didn't go well?",
+        columnItemsArray: [],
+        itemText: "",
+        columnDate: "by Default",
+      },
+      {
+        columnTitle: "Action items",
+        columnItemsArray: [],
+        itemText: "",
+        columnDate: "by Default",
+      },
+    ],
     text: "",
     columnCount: 0,
     showField: false,

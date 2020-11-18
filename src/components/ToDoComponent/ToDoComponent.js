@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TodoList from "./ToDoList/ToDoList";
 import "./ToDoComponent.css";
 import "../../UI/Fonts/Fonts.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class ToDoComponent extends Component {
   state = {
@@ -31,7 +33,7 @@ class ToDoComponent extends Component {
     if (this.props.columnData !== null) {
       data = Object.keys(this.props.columnData).map((column, index) => {
         return (
-          <div className="mt-2 card p-3 column" key={index}>
+          <div id="item" className="mt-2 card p-3 column" key={index}>
             <h4 className="agl">
               {Object.values(this.props.columnData[column].columnTitle)}
               <div
@@ -70,7 +72,7 @@ class ToDoComponent extends Component {
                 What needs to be done?
               </label>
               <input
-                className="form-control col-sm-3"
+                className="form-control"
                 id="new-todo"
                 key={column}
                 onChange={(e) => this.props.handleChange(e, column)}
@@ -89,7 +91,11 @@ class ToDoComponent extends Component {
         );
       });
     }
-    return <div className="mt-3 mb-3">{data}</div>;
+    return (
+      <div id="grid" className="mt-3 mb-3">
+        {data}
+      </div>
+    );
   }
 }
 

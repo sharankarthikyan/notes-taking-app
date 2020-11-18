@@ -2,3 +2,11 @@
     box-shadow: 1px 1px 1px 1px violet;
     border-radius: 6px;
 }
+
+#grid {
+    height: 100px;
+    display: grid;
+    grid-template-areas: "a a a";
+    gap: 10px;
+    grid-auto-columns: 400px;
+}
