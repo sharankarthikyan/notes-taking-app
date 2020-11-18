@@ -31,7 +31,7 @@ class ToDoComponent extends Component {
     if (this.props.columnData !== null) {
       data = Object.keys(this.props.columnData).map((column, index) => {
         return (
-          <div id="item" className="mt-2 card p-3 column mb-4" key={index}>
+          <div className="mt-2 card p-3 column mb-4" key={index}>
             <h4 className="agl">
               {Object.values(this.props.columnData[column].columnTitle)}
               <div
@@ -66,11 +66,8 @@ class ToDoComponent extends Component {
                 )
               }
             >
-              {/*<label htmlFor="new-todo" className="asl">*/}
-              {/*  What needs to be done?*/}
-              {/*</label>*/}
               <input
-                className="form-control"
+                className="form-control col-sm-3"
                 id="new-todo"
                 key={column}
                 onChange={(e) => this.props.handleChange(e, column)}
@@ -89,11 +86,7 @@ class ToDoComponent extends Component {
         );
       });
     }
-    return (
-      <div id="grid" className="mt-3 mb-3">
-        {data}
-      </div>
-    );
+    return <div className="mt-3 mb-3">{data}</div>;
   }
 }
 
