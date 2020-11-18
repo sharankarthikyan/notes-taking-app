@@ -8,7 +8,7 @@ import firebase from "firebase";
 
 class MainHomeComponent extends Component {
   state = {
-    pageTitle: "Type any name",
+    pageTitle: "Retrospective",
     columnData: [
       {
         columnTitle: "What went well?",
