@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import TodoList from "./ToDoList/ToDoList";
 import "./ToDoComponent.css";
 import "../../UI/Fonts/Fonts.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class ToDoComponent extends Component {
   state = {
