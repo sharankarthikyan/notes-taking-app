@@ -68,9 +68,9 @@ class ToDoComponent extends Component {
                 )
               }
             >
-              <label htmlFor="new-todo" className="asl">
-                What needs to be done?
-              </label>
+              {/*<label htmlFor="new-todo" className="asl">*/}
+              {/*  What needs to be done?*/}
+              {/*</label>*/}
               <input
                 className="form-control"
                 id="new-todo"

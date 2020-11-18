@@ -184,11 +184,11 @@ class MainHomeComponent extends Component {
     }
     return (
       <div className="container mt-4">
-        <div className="mb-4">
-          <p className="line-1 anim-typewriter me text-info">
-            Welcome to Double star
-          </p>
-        </div>
+        {/*<div className="mb-4">*/}
+        {/*  <p className="line-1 anim-typewriter me text-info">*/}
+        {/*    Welcome to Double star*/}
+        {/*  </p>*/}
+        {/*</div>*/}
         <Row>
           <Col sm={8}>
             <div>
@@ -219,7 +219,7 @@ class MainHomeComponent extends Component {
               className="btn bg-info text-white mt-2 agl"
             >
               <i className="plus circle icon" />
-              Add New Row
+              Add New Column
             </button>
             {field}
           </Col>
