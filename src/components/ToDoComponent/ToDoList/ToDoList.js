@@ -18,15 +18,17 @@ class TodoList extends React.Component {
               <li key={index} className="mt-2">
                 <p style={{ display: "inline" }}>{item.text} </p>
                 <div
-                  className="ui vertical yellow animated button"
+                  className="ui vertical pink animated button"
                   tabIndex="0"
                   onClick={() =>
                     this.props.likesHandler(index, this.state.columnIndex)
                   }
                 >
-                  <div className="hidden content agl">{item.likes} Impt.</div>
+                  <div className="hidden content agl">
+                    {item.likes} {item.likes > 1 ? "votes" : "vote"}
+                  </div>
                   <div className="visible content">
-                    <i className="exclamation icon" />
+                    <i className="thumbs up icon" />
                   </div>
                 </div>
                 <div
