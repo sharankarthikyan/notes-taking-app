@@ -5,7 +5,6 @@ import Col from "react-bootstrap/Col";
 import "./MainHomeComponent.css";
 import ToDoComponent from "../ToDoComponent/ToDoComponent";
 import firebase from "firebase";
-import Navbar from "react-bootstrap/Navbar";
 
 class MainHomeComponent extends Component {
   state = {
