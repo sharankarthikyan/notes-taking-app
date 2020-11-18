@@ -180,7 +180,7 @@ class MainHomeComponent extends Component {
             onChange={(e) => this.setState({ text: e.target.value })}
             required
           />
-          <button className="btn btn-outline-info mt-2">Add row</button>
+          <button className="btn btn-outline-info mt-2">Add column</button>
         </form>
       );
     }
