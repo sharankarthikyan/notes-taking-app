@@ -10,7 +10,7 @@ const LogMenuComponent = () => {
       <Navbar bg="light" expand="lg">
         <div className="container">
           <Navbar.Brand className="font-weight-bold" href="/home">
-            <img src={Logo} alt="Twinkle ToDos" width="100" />
+            <object data={Logo} type="image/svg+xml" width="100" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
