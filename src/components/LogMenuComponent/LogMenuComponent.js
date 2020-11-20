@@ -2,18 +2,15 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/images/TwinkleToDos2.svg";
 
 const LogMenuComponent = () => {
   return (
     <div>
       <Navbar bg="light" expand="lg">
         <div className="container">
-          <Navbar.Brand
-            className="font-weight-bold"
-            href="/home"
-            style={{ fontFamily: "Dancing Script" }}
-          >
-            Twinkle ToDos
+          <Navbar.Brand className="font-weight-bold" href="/home">
+            <img src={Logo} alt="Twinkle ToDos" width="100" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import fire from "../../fire";
 import Dropdown from "react-bootstrap/Dropdown";
+import Logo from "../../assets/images/TwinkleToDos2.svg";
 
 const HomeMenuComponent = () => {
   const handleLogout = () => {
@@ -14,12 +15,8 @@ const HomeMenuComponent = () => {
     <div>
       <Navbar bg="light" expand="lg">
         <div className="container">
-          <Navbar.Brand
-            className="font-weight-bold"
-            href="/home"
-            style={{ fontFamily: "Dancing Script" }}
-          >
-            Twinkle ToDos
+          <Navbar.Brand href="/home">
+            <img src={Logo} alt="" width="100" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
