@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./SignupComponent.css";
-import fire from "../../fire";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import LogMenuComponent from "../LogMenuComponent/LogMenuComponent";
 import { Link } from "react-router-dom";
 
@@ -27,12 +27,12 @@ class SignupComponent extends Component {
   signupHandler = (e) => {
     e.preventDefault();
     this.clearErrors();
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((response) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, this.state.email, this.state.password)
+      .then((userCredential) => {
         this.setState({ successMsg: "Account Created Successfully" });
         this.clearInputs();
+        // Redirect or navigate to '/home'
         window.location.href = "/home";
       })
       .catch((err) => {
@@ -45,6 +45,7 @@ class SignupComponent extends Component {
             this.setState({ passwordError: err.message });
             break;
           default:
+            console.error("Error signing up:", err);
         }
       });
   };

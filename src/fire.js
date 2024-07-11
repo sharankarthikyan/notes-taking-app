@@ -1,17 +1,19 @@
-import firebase from "firebase";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-let firebaseConfig = {
-  apiKey: "AIzaSyB2qS8UUbsOhjacV47VjIQVTljAIw_2cZM",
-  authDomain: "double-star-411ee.firebaseapp.com",
-  databaseURL: "https://double-star-411ee.firebaseio.com",
-  projectId: "double-star-411ee",
-  storageBucket: "double-star-411ee.appspot.com",
-  messagingSenderId: "831235571616",
-  appId: "1:831235571616:web:70b0cf840e3efc95ab6ec5",
-  measurementId: "G-DCHKHXD5R3",
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBth1CUag_H2GBjIy0mJyMWrgiVxABucYY",
+  authDomain: "babble-todo.firebaseapp.com",
+  projectId: "babble-todo",
+  storageBucket: "babble-todo.appspot.com",
+  messagingSenderId: "910909012156",
+  appId: "1:910909012156:web:25082f7c44d65cf3fab8b9",
 };
 
-const fire = firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// Initialize Firebase
+const fire = initializeApp(firebaseConfig);
 
 export default fire;

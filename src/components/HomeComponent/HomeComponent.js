@@ -1,44 +1,45 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import HomeMenuComponent from "../HomeMenuComponent/HomeMenuComponent";
 import MainHomeComponent from "../MainHomeComponent/MainHomeComponent";
-import firebase from "firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Spinner from "../../UI/Spinner/Spinner";
 
-class HomeComponent extends Component {
-  state = {
-    userId: "",
-    userEmailId: "",
-    userError: false,
-  };
+const HomeComponent = () => {
+  const [userId, setUserId] = useState("");
+  const [userEmailId, setUserEmailId] = useState("");
+  const [userError, setUserError] = useState(false);
 
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        this.setState({ userId: user.uid, userEmailId: user.email });
+        setUserId(user.uid);
+        setUserEmailId(user.email);
+        setUserError(false);
       } else {
-        this.setState({ userError: true });
+        setUserId("");
+        setUserEmailId("");
+        setUserError(true);
       }
     });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (!userError && userId) {
+    return (
+      <div>
+        <HomeMenuComponent />
+        <MainHomeComponent userId={userId} userEmailId={userEmailId} />
+      </div>
+    );
+  } else if (userError) {
+    return (
+      <Spinner message="Something went Wrong, Maybe your login session expired :(" />
+    );
+  } else {
+    return <Spinner />;
   }
-  render() {
-    if (!this.state.userError && this.state.userId) {
-      return (
-        <div>
-          <HomeMenuComponent />
-          <MainHomeComponent
-            userId={this.state.userId}
-            userEmailId={this.state.userEmailId}
-          />
-        </div>
-      );
-    } else if (this.state.userError) {
-      return (
-        <Spinner message="Something went Wrong, Maybe your login session expired :(" />
-      );
-    } else {
-      return <Spinner />;
-    }
-  }
-}
+};
 
 export default HomeComponent;

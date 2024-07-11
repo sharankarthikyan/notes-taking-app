@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import fire from "../../fire";
+import auth from "../../fire"; // Import the auth object from fire.js
 import "./LoginComponent.css";
 import LogMenuComponent from "../LogMenuComponent/LogMenuComponent";
 import { Link } from "react-router-dom";
 
 class LoginComponent extends Component {
   state = {
-    user: "",
     email: "",
     password: "",
     emailError: "",
     passwordError: "",
-    hasAccount: false,
   };
 
   clearInputs = () => {
@@ -27,11 +25,11 @@ class LoginComponent extends Component {
   loginHandler = (e) => {
     e.preventDefault();
     this.clearErrors();
-    fire
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((response) => {
-        this.setState({ hasAccount: true });
+    signInWithEmailAndPassword(auth, this.state.email, this.state.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("Signed in as:", user.uid);
         window.location.href = "/home";
       })
       .catch((err) => {
@@ -45,6 +43,7 @@ class LoginComponent extends Component {
             this.setState({ passwordError: err.message });
             break;
           default:
+            console.error("Error signing in:", err);
         }
       });
   };
